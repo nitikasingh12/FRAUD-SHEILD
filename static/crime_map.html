@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_691729dab2acdb747184db1fdb850487 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium@main/folium/templates/leaflet_heat.min.js"></script>
+</head>
+<body>
+    
+    
+    <div style="position: fixed; bottom: 30px; left: 30px; z-index: 1000;
+                background: white; padding: 12px 16px; border-radius: 8px;
+                border: 1px solid #ccc; font-family: sans-serif; font-size: 13px;">
+        <b>Incident Type</b><br>
+        <span style="color:red;">&#9679;</span> Digital Arrest Scam<br>
+        <span style="color:orange;">&#9679;</span> Fraud Complaint<br>
+        <span style="color:purple;">&#9679;</span> Counterfeit Seizure
+    </div>
+    
+    
+            <div class="folium-map" id="map_691729dab2acdb747184db1fdb850487" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_691729dab2acdb747184db1fdb850487 = L.map(
+                "map_691729dab2acdb747184db1fdb850487",
+                {
+                    center: [21.6994425, 78.68742],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 5,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_37115fc2593785dbd822516637ce1550 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 20, "maxZoom": 20, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abcd", "tms": false}
+            );
+        
+    
+            tile_layer_37115fc2593785dbd822516637ce1550.addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+            var heat_map_7e7df7341e3cf8514c978b8484e9229c = L.heatLayer(
+                [[28.6139, 77.209], [28.6129, 77.2295], [28.6304, 77.2177], [28.5921, 77.046], [28.6519, 77.2315], [28.628, 77.206], [19.076, 72.8777], [19.0821, 72.8416], [19.033, 72.857], [19.1136, 72.8697], [19.0596, 72.8295], [19.0176, 72.8562], [12.9716, 77.5946], [12.9352, 77.6245], [12.9698, 77.75], [13.0067, 77.5667], [12.9081, 77.6476], [25.5941, 85.1376], [25.6127, 85.1444], [25.5788, 85.12], [25.6206, 85.093], [25.5716, 85.1622], [25.6, 85.105], [26.8467, 80.9462], [26.86, 80.92], [26.81, 80.945], [17.385, 78.4867], [17.44, 78.4482], [17.3616, 78.4747], [18.5204, 73.8567], [18.5679, 73.9143], [22.5726, 88.3639], [22.5958, 88.37], [22.5448, 88.3426], [26.9124, 75.7873], [26.885, 75.81], [13.0827, 80.2707], [13.05, 80.2121], [23.0225, 72.5714], [23.04, 72.56]],
+                {"blur": 15, "maxZoom": 18, "minOpacity": 0.5, "radius": 25}
+            );
+        
+    
+            heat_map_7e7df7341e3cf8514c978b8484e9229c.addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+            var circle_marker_be24309f9e4d6c21e6283496ba2ed1c2 = L.circleMarker(
+                [28.6139, 77.209],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_c7ad719589fc3960b389b71f07ce7991 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_dd09532262d837e3ebcf444cc40e9a72 = $(`<div id="html_dd09532262d837e3ebcf444cc40e9a72" style="width: 100.0%; height: 100.0%;"><b>Digital Arrest Scam</b><br>City: Delhi<br>Severity: high</div>`)[0];
+                popup_c7ad719589fc3960b389b71f07ce7991.setContent(html_dd09532262d837e3ebcf444cc40e9a72);
+            
+        
+
+        circle_marker_be24309f9e4d6c21e6283496ba2ed1c2.bindPopup(popup_c7ad719589fc3960b389b71f07ce7991)
+        ;
+
+        
+    
+    
+            var circle_marker_43e7357f456adfd246c64526135d73e4 = L.circleMarker(
+                [28.6129, 77.2295],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_3de09e7ecc8a17f0d97d0cb897ba22ae = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_05d1ab4ada1e600d32b875d6a18e1c68 = $(`<div id="html_05d1ab4ada1e600d32b875d6a18e1c68" style="width: 100.0%; height: 100.0%;"><b>Digital Arrest Scam</b><br>City: Delhi<br>Severity: high</div>`)[0];
+                popup_3de09e7ecc8a17f0d97d0cb897ba22ae.setContent(html_05d1ab4ada1e600d32b875d6a18e1c68);
+            
+        
+
+        circle_marker_43e7357f456adfd246c64526135d73e4.bindPopup(popup_3de09e7ecc8a17f0d97d0cb897ba22ae)
+        ;
+
+        
+    
+    
+            var circle_marker_fa1a1adbaa1a0f63af826f1ed4007f16 = L.circleMarker(
+                [28.6304, 77.2177],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_d4d5cd6b94bd6e27b30bba1f4c282fbf = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_65c26cc8cefb41c61f0d52f0b1e22dd6 = $(`<div id="html_65c26cc8cefb41c61f0d52f0b1e22dd6" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Delhi<br>Severity: medium</div>`)[0];
+                popup_d4d5cd6b94bd6e27b30bba1f4c282fbf.setContent(html_65c26cc8cefb41c61f0d52f0b1e22dd6);
+            
+        
+
+        circle_marker_fa1a1adbaa1a0f63af826f1ed4007f16.bindPopup(popup_d4d5cd6b94bd6e27b30bba1f4c282fbf)
+        ;
+
+        
+    
+    
+            var circle_marker_747e3d632b39e194d67319fd011e75a0 = L.circleMarker(
+                [28.5921, 77.046],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_c8972506c068b061905839ccbad5b498 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7330bd151fb7bfb01e4f969eac2f5e97 = $(`<div id="html_7330bd151fb7bfb01e4f969eac2f5e97" style="width: 100.0%; height: 100.0%;"><b>Counterfeit Seizure</b><br>City: Delhi<br>Severity: medium</div>`)[0];
+                popup_c8972506c068b061905839ccbad5b498.setContent(html_7330bd151fb7bfb01e4f969eac2f5e97);
+            
+        
+
+        circle_marker_747e3d632b39e194d67319fd011e75a0.bindPopup(popup_c8972506c068b061905839ccbad5b498)
+        ;
+
+        
+    
+    
+            var circle_marker_eab00e3f9831cca3236b5c0f6c1393b5 = L.circleMarker(
+                [28.6519, 77.2315],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_cf6d70752531be35f84a76cf777b8319 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fa4cb4cce32be01c5f1c09881f30a056 = $(`<div id="html_fa4cb4cce32be01c5f1c09881f30a056" style="width: 100.0%; height: 100.0%;"><b>Digital Arrest Scam</b><br>City: Delhi<br>Severity: high</div>`)[0];
+                popup_cf6d70752531be35f84a76cf777b8319.setContent(html_fa4cb4cce32be01c5f1c09881f30a056);
+            
+        
+
+        circle_marker_eab00e3f9831cca3236b5c0f6c1393b5.bindPopup(popup_cf6d70752531be35f84a76cf777b8319)
+        ;
+
+        
+    
+    
+            var circle_marker_54275843fd1921bc74155af774dc2c7a = L.circleMarker(
+                [28.628, 77.206],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_f79cba5221ead59aec4cff152ebf65ec = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_5c201b9eeeb0e40f23112ebfddaebe2a = $(`<div id="html_5c201b9eeeb0e40f23112ebfddaebe2a" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Delhi<br>Severity: low</div>`)[0];
+                popup_f79cba5221ead59aec4cff152ebf65ec.setContent(html_5c201b9eeeb0e40f23112ebfddaebe2a);
+            
+        
+
+        circle_marker_54275843fd1921bc74155af774dc2c7a.bindPopup(popup_f79cba5221ead59aec4cff152ebf65ec)
+        ;
+
+        
+    
+    
+            var circle_marker_016f3834085579dfed7e7263ac721847 = L.circleMarker(
+                [19.076, 72.8777],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_fa395e820875f4aebe8f583a0f675a3b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f1fee255144f4d94f2c317ae33f8fb3f = $(`<div id="html_f1fee255144f4d94f2c317ae33f8fb3f" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Mumbai<br>Severity: high</div>`)[0];
+                popup_fa395e820875f4aebe8f583a0f675a3b.setContent(html_f1fee255144f4d94f2c317ae33f8fb3f);
+            
+        
+
+        circle_marker_016f3834085579dfed7e7263ac721847.bindPopup(popup_fa395e820875f4aebe8f583a0f675a3b)
+        ;
+
+        
+    
+    
+            var circle_marker_dbab357e263ce9a5e3452345701d4729 = L.circleMarker(
+                [19.0821, 72.8416],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_b5dd952019f3cf5f5f09aeb423af2eae = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b3b8f0b13ee324597b78b0a37725162a = $(`<div id="html_b3b8f0b13ee324597b78b0a37725162a" style="width: 100.0%; height: 100.0%;"><b>Counterfeit Seizure</b><br>City: Mumbai<br>Severity: high</div>`)[0];
+                popup_b5dd952019f3cf5f5f09aeb423af2eae.setContent(html_b3b8f0b13ee324597b78b0a37725162a);
+            
+        
+
+        circle_marker_dbab357e263ce9a5e3452345701d4729.bindPopup(popup_b5dd952019f3cf5f5f09aeb423af2eae)
+        ;
+
+        
+    
+    
+            var circle_marker_37a9cdeec453c7475bfebd26912e5b8c = L.circleMarker(
+                [19.033, 72.857],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_c87e127dbcb566505af511b2d9acaf7d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4077551df0461fa32c6f2ca2a5a1a405 = $(`<div id="html_4077551df0461fa32c6f2ca2a5a1a405" style="width: 100.0%; height: 100.0%;"><b>Digital Arrest Scam</b><br>City: Mumbai<br>Severity: medium</div>`)[0];
+                popup_c87e127dbcb566505af511b2d9acaf7d.setContent(html_4077551df0461fa32c6f2ca2a5a1a405);
+            
+        
+
+        circle_marker_37a9cdeec453c7475bfebd26912e5b8c.bindPopup(popup_c87e127dbcb566505af511b2d9acaf7d)
+        ;
+
+        
+    
+    
+            var circle_marker_8487db2e3eaccbcef3ac13fd937be5b8 = L.circleMarker(
+                [19.1136, 72.8697],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_85aebcb8395501c42189e0d3567bc220 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d4265652a936bf52de31b2f05ad09400 = $(`<div id="html_d4265652a936bf52de31b2f05ad09400" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Mumbai<br>Severity: medium</div>`)[0];
+                popup_85aebcb8395501c42189e0d3567bc220.setContent(html_d4265652a936bf52de31b2f05ad09400);
+            
+        
+
+        circle_marker_8487db2e3eaccbcef3ac13fd937be5b8.bindPopup(popup_85aebcb8395501c42189e0d3567bc220)
+        ;
+
+        
+    
+    
+            var circle_marker_979ac5e767b201c346aef1ed555b2a79 = L.circleMarker(
+                [19.0596, 72.8295],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_0ed4a8fdaed5d1ba9d4106e2cc6925dd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6f4d45d30748afa92250a88c95596b4e = $(`<div id="html_6f4d45d30748afa92250a88c95596b4e" style="width: 100.0%; height: 100.0%;"><b>Counterfeit Seizure</b><br>City: Mumbai<br>Severity: high</div>`)[0];
+                popup_0ed4a8fdaed5d1ba9d4106e2cc6925dd.setContent(html_6f4d45d30748afa92250a88c95596b4e);
+            
+        
+
+        circle_marker_979ac5e767b201c346aef1ed555b2a79.bindPopup(popup_0ed4a8fdaed5d1ba9d4106e2cc6925dd)
+        ;
+
+        
+    
+    
+            var circle_marker_b6b4dcf29ac5f26a4060c866c07914f6 = L.circleMarker(
+                [19.0176, 72.8562],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_c82c03130f8eed55f5b7746c0ca644fe = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_84e1e4bbd22b6c6e82fd2331ef999817 = $(`<div id="html_84e1e4bbd22b6c6e82fd2331ef999817" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Mumbai<br>Severity: low</div>`)[0];
+                popup_c82c03130f8eed55f5b7746c0ca644fe.setContent(html_84e1e4bbd22b6c6e82fd2331ef999817);
+            
+        
+
+        circle_marker_b6b4dcf29ac5f26a4060c866c07914f6.bindPopup(popup_c82c03130f8eed55f5b7746c0ca644fe)
+        ;
+
+        
+    
+    
+            var circle_marker_af3257033b6010bb084ec8da98b72059 = L.circleMarker(
+                [12.9716, 77.5946],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_43574f2adb90e4e4983233c345cef00a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fa215f770fa60dc84b40855ae9602934 = $(`<div id="html_fa215f770fa60dc84b40855ae9602934" style="width: 100.0%; height: 100.0%;"><b>Digital Arrest Scam</b><br>City: Bengaluru<br>Severity: high</div>`)[0];
+                popup_43574f2adb90e4e4983233c345cef00a.setContent(html_fa215f770fa60dc84b40855ae9602934);
+            
+        
+
+        circle_marker_af3257033b6010bb084ec8da98b72059.bindPopup(popup_43574f2adb90e4e4983233c345cef00a)
+        ;
+
+        
+    
+    
+            var circle_marker_4f891581864e9e9399ae9b580b1941be = L.circleMarker(
+                [12.9352, 77.6245],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_139a42238a285f5bc09e7bb01ed6f382 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8c9e7700c1b9c003eeb91e9df939b163 = $(`<div id="html_8c9e7700c1b9c003eeb91e9df939b163" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Bengaluru<br>Severity: medium</div>`)[0];
+                popup_139a42238a285f5bc09e7bb01ed6f382.setContent(html_8c9e7700c1b9c003eeb91e9df939b163);
+            
+        
+
+        circle_marker_4f891581864e9e9399ae9b580b1941be.bindPopup(popup_139a42238a285f5bc09e7bb01ed6f382)
+        ;
+
+        
+    
+    
+            var circle_marker_aa899675e9c4c3a5105a0c42dcad9442 = L.circleMarker(
+                [12.9698, 77.75],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_0f4b7e65160b38949cf6ab71d88dfa83 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f09b0d98c83741693b1aeb1b13f14125 = $(`<div id="html_f09b0d98c83741693b1aeb1b13f14125" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Bengaluru<br>Severity: low</div>`)[0];
+                popup_0f4b7e65160b38949cf6ab71d88dfa83.setContent(html_f09b0d98c83741693b1aeb1b13f14125);
+            
+        
+
+        circle_marker_aa899675e9c4c3a5105a0c42dcad9442.bindPopup(popup_0f4b7e65160b38949cf6ab71d88dfa83)
+        ;
+
+        
+    
+    
+            var circle_marker_db21a348df4612ecfc1f8727fef98d57 = L.circleMarker(
+                [13.0067, 77.5667],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_41e5702835358fc1db5d452c7f8fa0bc = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c8e922664c116e290f1e72d5abc2b0ea = $(`<div id="html_c8e922664c116e290f1e72d5abc2b0ea" style="width: 100.0%; height: 100.0%;"><b>Counterfeit Seizure</b><br>City: Bengaluru<br>Severity: medium</div>`)[0];
+                popup_41e5702835358fc1db5d452c7f8fa0bc.setContent(html_c8e922664c116e290f1e72d5abc2b0ea);
+            
+        
+
+        circle_marker_db21a348df4612ecfc1f8727fef98d57.bindPopup(popup_41e5702835358fc1db5d452c7f8fa0bc)
+        ;
+
+        
+    
+    
+            var circle_marker_15b09183f9b0b28579ef7b7c9e84f68c = L.circleMarker(
+                [12.9081, 77.6476],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_c54635ab5e2e9c5a88ec7d4b9d0da1f0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3f6951443c5de017952bdadc138b3c8e = $(`<div id="html_3f6951443c5de017952bdadc138b3c8e" style="width: 100.0%; height: 100.0%;"><b>Digital Arrest Scam</b><br>City: Bengaluru<br>Severity: medium</div>`)[0];
+                popup_c54635ab5e2e9c5a88ec7d4b9d0da1f0.setContent(html_3f6951443c5de017952bdadc138b3c8e);
+            
+        
+
+        circle_marker_15b09183f9b0b28579ef7b7c9e84f68c.bindPopup(popup_c54635ab5e2e9c5a88ec7d4b9d0da1f0)
+        ;
+
+        
+    
+    
+            var circle_marker_a00fd2204f5e190acd935ab7494ea3ec = L.circleMarker(
+                [25.5941, 85.1376],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_40ffed4b750de47c73c3352eaa248762 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7172079541d27c3966f15bb25822933b = $(`<div id="html_7172079541d27c3966f15bb25822933b" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Patna<br>Severity: high</div>`)[0];
+                popup_40ffed4b750de47c73c3352eaa248762.setContent(html_7172079541d27c3966f15bb25822933b);
+            
+        
+
+        circle_marker_a00fd2204f5e190acd935ab7494ea3ec.bindPopup(popup_40ffed4b750de47c73c3352eaa248762)
+        ;
+
+        
+    
+    
+            var circle_marker_9a25859a0bdad1d2b7f15bd273c0daf6 = L.circleMarker(
+                [25.6127, 85.1444],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_a19d840a2029cd2d6bf9ea332cba8296 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0ce9b775e64e8afd895b55a8425a582b = $(`<div id="html_0ce9b775e64e8afd895b55a8425a582b" style="width: 100.0%; height: 100.0%;"><b>Digital Arrest Scam</b><br>City: Patna<br>Severity: high</div>`)[0];
+                popup_a19d840a2029cd2d6bf9ea332cba8296.setContent(html_0ce9b775e64e8afd895b55a8425a582b);
+            
+        
+
+        circle_marker_9a25859a0bdad1d2b7f15bd273c0daf6.bindPopup(popup_a19d840a2029cd2d6bf9ea332cba8296)
+        ;
+
+        
+    
+    
+            var circle_marker_05f01783c41bbc442158db0dbbaf2699 = L.circleMarker(
+                [25.5788, 85.12],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_27893dbc091737bd33afad8adcd50019 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_286243cc9a88db295364007d9c36aa92 = $(`<div id="html_286243cc9a88db295364007d9c36aa92" style="width: 100.0%; height: 100.0%;"><b>Counterfeit Seizure</b><br>City: Patna<br>Severity: medium</div>`)[0];
+                popup_27893dbc091737bd33afad8adcd50019.setContent(html_286243cc9a88db295364007d9c36aa92);
+            
+        
+
+        circle_marker_05f01783c41bbc442158db0dbbaf2699.bindPopup(popup_27893dbc091737bd33afad8adcd50019)
+        ;
+
+        
+    
+    
+            var circle_marker_295fc25a56b25c81f9adae656aa229b6 = L.circleMarker(
+                [25.6206, 85.093],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_555c8bd5409b25c939ba064e465b2a6a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_192ed7c9371d8c1943bdd43543d41cca = $(`<div id="html_192ed7c9371d8c1943bdd43543d41cca" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Patna<br>Severity: medium</div>`)[0];
+                popup_555c8bd5409b25c939ba064e465b2a6a.setContent(html_192ed7c9371d8c1943bdd43543d41cca);
+            
+        
+
+        circle_marker_295fc25a56b25c81f9adae656aa229b6.bindPopup(popup_555c8bd5409b25c939ba064e465b2a6a)
+        ;
+
+        
+    
+    
+            var circle_marker_3717199471ab7d46f31bd0ad3f394800 = L.circleMarker(
+                [25.5716, 85.1622],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_a0fc42e34ccb37523145ce3870ac07c9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_dafc317a30149f0a64d110beaaef8113 = $(`<div id="html_dafc317a30149f0a64d110beaaef8113" style="width: 100.0%; height: 100.0%;"><b>Digital Arrest Scam</b><br>City: Patna<br>Severity: high</div>`)[0];
+                popup_a0fc42e34ccb37523145ce3870ac07c9.setContent(html_dafc317a30149f0a64d110beaaef8113);
+            
+        
+
+        circle_marker_3717199471ab7d46f31bd0ad3f394800.bindPopup(popup_a0fc42e34ccb37523145ce3870ac07c9)
+        ;
+
+        
+    
+    
+            var circle_marker_a4447e9557c3765fc2d3358f6034acfa = L.circleMarker(
+                [25.6, 85.105],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_ce0393f3d197fa0d3745017c62e590a1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1303d58f9b8960231a563ffc1eb23850 = $(`<div id="html_1303d58f9b8960231a563ffc1eb23850" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Patna<br>Severity: low</div>`)[0];
+                popup_ce0393f3d197fa0d3745017c62e590a1.setContent(html_1303d58f9b8960231a563ffc1eb23850);
+            
+        
+
+        circle_marker_a4447e9557c3765fc2d3358f6034acfa.bindPopup(popup_ce0393f3d197fa0d3745017c62e590a1)
+        ;
+
+        
+    
+    
+            var circle_marker_17c547c7b815aa29aab2351352e97888 = L.circleMarker(
+                [26.8467, 80.9462],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_0f1f53bfcefc62625ed531251be6b367 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_03148a595768d41e97db3adc790e7ce8 = $(`<div id="html_03148a595768d41e97db3adc790e7ce8" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Lucknow<br>Severity: medium</div>`)[0];
+                popup_0f1f53bfcefc62625ed531251be6b367.setContent(html_03148a595768d41e97db3adc790e7ce8);
+            
+        
+
+        circle_marker_17c547c7b815aa29aab2351352e97888.bindPopup(popup_0f1f53bfcefc62625ed531251be6b367)
+        ;
+
+        
+    
+    
+            var circle_marker_0765e0d149bbe18f89c5c7197f93681e = L.circleMarker(
+                [26.86, 80.92],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_16c3b5b53b869c1c4afe46c412df9a0c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b62ee46298bb98e4b61ab2005d27bec4 = $(`<div id="html_b62ee46298bb98e4b61ab2005d27bec4" style="width: 100.0%; height: 100.0%;"><b>Counterfeit Seizure</b><br>City: Lucknow<br>Severity: low</div>`)[0];
+                popup_16c3b5b53b869c1c4afe46c412df9a0c.setContent(html_b62ee46298bb98e4b61ab2005d27bec4);
+            
+        
+
+        circle_marker_0765e0d149bbe18f89c5c7197f93681e.bindPopup(popup_16c3b5b53b869c1c4afe46c412df9a0c)
+        ;
+
+        
+    
+    
+            var circle_marker_31aa826dbb44b19b5598184eae8c48e2 = L.circleMarker(
+                [26.81, 80.945],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_30ecbcfe15aa8c67884b1118feb9e1b8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2ffa2915349887db8471de4dd3b588f4 = $(`<div id="html_2ffa2915349887db8471de4dd3b588f4" style="width: 100.0%; height: 100.0%;"><b>Digital Arrest Scam</b><br>City: Lucknow<br>Severity: medium</div>`)[0];
+                popup_30ecbcfe15aa8c67884b1118feb9e1b8.setContent(html_2ffa2915349887db8471de4dd3b588f4);
+            
+        
+
+        circle_marker_31aa826dbb44b19b5598184eae8c48e2.bindPopup(popup_30ecbcfe15aa8c67884b1118feb9e1b8)
+        ;
+
+        
+    
+    
+            var circle_marker_7c4f09c5fdf297dd1fe448f0ad9ba197 = L.circleMarker(
+                [17.385, 78.4867],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_a85cda2bba919ac774a7a9dade786c07 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6c54b7105f354c2d119ab229555c5e17 = $(`<div id="html_6c54b7105f354c2d119ab229555c5e17" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Hyderabad<br>Severity: high</div>`)[0];
+                popup_a85cda2bba919ac774a7a9dade786c07.setContent(html_6c54b7105f354c2d119ab229555c5e17);
+            
+        
+
+        circle_marker_7c4f09c5fdf297dd1fe448f0ad9ba197.bindPopup(popup_a85cda2bba919ac774a7a9dade786c07)
+        ;
+
+        
+    
+    
+            var circle_marker_56a1347f7b2254c3420bd2446f6b26a8 = L.circleMarker(
+                [17.44, 78.4482],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_eec12bc79dbcbee3b5dcb9002288bd5c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_290b5405171cce802be1cc95903e7ee4 = $(`<div id="html_290b5405171cce802be1cc95903e7ee4" style="width: 100.0%; height: 100.0%;"><b>Digital Arrest Scam</b><br>City: Hyderabad<br>Severity: medium</div>`)[0];
+                popup_eec12bc79dbcbee3b5dcb9002288bd5c.setContent(html_290b5405171cce802be1cc95903e7ee4);
+            
+        
+
+        circle_marker_56a1347f7b2254c3420bd2446f6b26a8.bindPopup(popup_eec12bc79dbcbee3b5dcb9002288bd5c)
+        ;
+
+        
+    
+    
+            var circle_marker_b4ab479ce24b523de36eacd0f39d4ded = L.circleMarker(
+                [17.3616, 78.4747],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_4bf0c1e77470545eb47fc55be8320e69 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_20f3b9fa3b23449e769b67572c8e9532 = $(`<div id="html_20f3b9fa3b23449e769b67572c8e9532" style="width: 100.0%; height: 100.0%;"><b>Counterfeit Seizure</b><br>City: Hyderabad<br>Severity: medium</div>`)[0];
+                popup_4bf0c1e77470545eb47fc55be8320e69.setContent(html_20f3b9fa3b23449e769b67572c8e9532);
+            
+        
+
+        circle_marker_b4ab479ce24b523de36eacd0f39d4ded.bindPopup(popup_4bf0c1e77470545eb47fc55be8320e69)
+        ;
+
+        
+    
+    
+            var circle_marker_ca848102963de45e155d33c8e7150109 = L.circleMarker(
+                [18.5204, 73.8567],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_c3f289b7668f05f0cf67b94e0c822855 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ddb626afb6fa4bf89451de8e3127613e = $(`<div id="html_ddb626afb6fa4bf89451de8e3127613e" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Pune<br>Severity: medium</div>`)[0];
+                popup_c3f289b7668f05f0cf67b94e0c822855.setContent(html_ddb626afb6fa4bf89451de8e3127613e);
+            
+        
+
+        circle_marker_ca848102963de45e155d33c8e7150109.bindPopup(popup_c3f289b7668f05f0cf67b94e0c822855)
+        ;
+
+        
+    
+    
+            var circle_marker_5409d6e386fb593c0375b8bddaf27856 = L.circleMarker(
+                [18.5679, 73.9143],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_68bd100ea21bac50756381d175d87d59 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9174d59fec76ce116397759168d06be4 = $(`<div id="html_9174d59fec76ce116397759168d06be4" style="width: 100.0%; height: 100.0%;"><b>Digital Arrest Scam</b><br>City: Pune<br>Severity: low</div>`)[0];
+                popup_68bd100ea21bac50756381d175d87d59.setContent(html_9174d59fec76ce116397759168d06be4);
+            
+        
+
+        circle_marker_5409d6e386fb593c0375b8bddaf27856.bindPopup(popup_68bd100ea21bac50756381d175d87d59)
+        ;
+
+        
+    
+    
+            var circle_marker_aa7e96196ccf9d873c5cedec63fa948d = L.circleMarker(
+                [22.5726, 88.3639],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_f3b84bbaa60363875be3a255dcb2aa0d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ad7756986e4fd279cf41b968ab5ebe40 = $(`<div id="html_ad7756986e4fd279cf41b968ab5ebe40" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Kolkata<br>Severity: high</div>`)[0];
+                popup_f3b84bbaa60363875be3a255dcb2aa0d.setContent(html_ad7756986e4fd279cf41b968ab5ebe40);
+            
+        
+
+        circle_marker_aa7e96196ccf9d873c5cedec63fa948d.bindPopup(popup_f3b84bbaa60363875be3a255dcb2aa0d)
+        ;
+
+        
+    
+    
+            var circle_marker_6aa0a937b3fde82718cded41ea007cca = L.circleMarker(
+                [22.5958, 88.37],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_34e3c3cda1195a21caeb49f5c09f54cf = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d865ded6be1aabd27e687c6b9362ab5a = $(`<div id="html_d865ded6be1aabd27e687c6b9362ab5a" style="width: 100.0%; height: 100.0%;"><b>Counterfeit Seizure</b><br>City: Kolkata<br>Severity: medium</div>`)[0];
+                popup_34e3c3cda1195a21caeb49f5c09f54cf.setContent(html_d865ded6be1aabd27e687c6b9362ab5a);
+            
+        
+
+        circle_marker_6aa0a937b3fde82718cded41ea007cca.bindPopup(popup_34e3c3cda1195a21caeb49f5c09f54cf)
+        ;
+
+        
+    
+    
+            var circle_marker_0b2fd81be7559b504cf3388f45a4a8bc = L.circleMarker(
+                [22.5448, 88.3426],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_8e3d66a485f9b2fa7b29982326e43efc = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6ced608c99b350357139e8900eb65d04 = $(`<div id="html_6ced608c99b350357139e8900eb65d04" style="width: 100.0%; height: 100.0%;"><b>Digital Arrest Scam</b><br>City: Kolkata<br>Severity: high</div>`)[0];
+                popup_8e3d66a485f9b2fa7b29982326e43efc.setContent(html_6ced608c99b350357139e8900eb65d04);
+            
+        
+
+        circle_marker_0b2fd81be7559b504cf3388f45a4a8bc.bindPopup(popup_8e3d66a485f9b2fa7b29982326e43efc)
+        ;
+
+        
+    
+    
+            var circle_marker_96b8328ff794fa6d416340876ee40246 = L.circleMarker(
+                [26.9124, 75.7873],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_8eeab9d50f19448357326c0d076c4646 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8d6cd6e2d736712e1c9ba6a9c3251121 = $(`<div id="html_8d6cd6e2d736712e1c9ba6a9c3251121" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Jaipur<br>Severity: medium</div>`)[0];
+                popup_8eeab9d50f19448357326c0d076c4646.setContent(html_8d6cd6e2d736712e1c9ba6a9c3251121);
+            
+        
+
+        circle_marker_96b8328ff794fa6d416340876ee40246.bindPopup(popup_8eeab9d50f19448357326c0d076c4646)
+        ;
+
+        
+    
+    
+            var circle_marker_47198452ca029186b60e1b9320394761 = L.circleMarker(
+                [26.885, 75.81],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_b3c376c950c7c700abead5ac6943410a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3743320ba1b399b9d998e5e9b6bf13df = $(`<div id="html_3743320ba1b399b9d998e5e9b6bf13df" style="width: 100.0%; height: 100.0%;"><b>Counterfeit Seizure</b><br>City: Jaipur<br>Severity: low</div>`)[0];
+                popup_b3c376c950c7c700abead5ac6943410a.setContent(html_3743320ba1b399b9d998e5e9b6bf13df);
+            
+        
+
+        circle_marker_47198452ca029186b60e1b9320394761.bindPopup(popup_b3c376c950c7c700abead5ac6943410a)
+        ;
+
+        
+    
+    
+            var circle_marker_e88352c8fa021d53126747a15ff7c638 = L.circleMarker(
+                [13.0827, 80.2707],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_ea9af7e51fac60f00a6178b8644081ff = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8510b00caa11fdc9ea692d04360354f4 = $(`<div id="html_8510b00caa11fdc9ea692d04360354f4" style="width: 100.0%; height: 100.0%;"><b>Digital Arrest Scam</b><br>City: Chennai<br>Severity: medium</div>`)[0];
+                popup_ea9af7e51fac60f00a6178b8644081ff.setContent(html_8510b00caa11fdc9ea692d04360354f4);
+            
+        
+
+        circle_marker_e88352c8fa021d53126747a15ff7c638.bindPopup(popup_ea9af7e51fac60f00a6178b8644081ff)
+        ;
+
+        
+    
+    
+            var circle_marker_718673cbb2c951027ac2e9df219327d1 = L.circleMarker(
+                [13.05, 80.2121],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_041cdd75068b1d02b28b8a9762231f41 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a3da7b520628feeb076dc72cbdcd459f = $(`<div id="html_a3da7b520628feeb076dc72cbdcd459f" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Chennai<br>Severity: low</div>`)[0];
+                popup_041cdd75068b1d02b28b8a9762231f41.setContent(html_a3da7b520628feeb076dc72cbdcd459f);
+            
+        
+
+        circle_marker_718673cbb2c951027ac2e9df219327d1.bindPopup(popup_041cdd75068b1d02b28b8a9762231f41)
+        ;
+
+        
+    
+    
+            var circle_marker_aad47bc63f6f360c9daccf3cec768152 = L.circleMarker(
+                [23.0225, 72.5714],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_6c6553d7bb01c3013f8045d96c75431c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a89f9daec101ff57b378de778016a508 = $(`<div id="html_a89f9daec101ff57b378de778016a508" style="width: 100.0%; height: 100.0%;"><b>Fraud Complaint</b><br>City: Ahmedabad<br>Severity: medium</div>`)[0];
+                popup_6c6553d7bb01c3013f8045d96c75431c.setContent(html_a89f9daec101ff57b378de778016a508);
+            
+        
+
+        circle_marker_aad47bc63f6f360c9daccf3cec768152.bindPopup(popup_6c6553d7bb01c3013f8045d96c75431c)
+        ;
+
+        
+    
+    
+            var circle_marker_fb4dbb73f3744ff464d3f9bc3e3df07c = L.circleMarker(
+                [23.04, 72.56],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_691729dab2acdb747184db1fdb850487);
+        
+    
+        var popup_b65ab65b5a762f9c61536b1234339083 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2b02f41a73695e3bd309228a07ce92fe = $(`<div id="html_2b02f41a73695e3bd309228a07ce92fe" style="width: 100.0%; height: 100.0%;"><b>Digital Arrest Scam</b><br>City: Ahmedabad<br>Severity: low</div>`)[0];
+                popup_b65ab65b5a762f9c61536b1234339083.setContent(html_2b02f41a73695e3bd309228a07ce92fe);
+            
+        
+
+        circle_marker_fb4dbb73f3744ff464d3f9bc3e3df07c.bindPopup(popup_b65ab65b5a762f9c61536b1234339083)
+        ;
+
+        
+    
+</script>
+</html>

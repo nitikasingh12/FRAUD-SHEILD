@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Counterfeit Currency Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Counterfeit Currency Check</h1>
+      <p>Upload a photo of a currency note to check if it looks genuine.</p>
+      <p><a href="/">&larr; Back to Fraud Shield</a></p>
+    </header>
+
+    <div class="input-area">
+      <input type="file" id="imageInput" accept="image/png, image/jpeg">
+      <button id="checkBtn">Check note</button>
+    </div>
+
+    <div id="preview"></div>
+
+    <div id="result" class="result hidden">
+      <div class="risk-badge" id="riskBadge"></div>
+      <p id="responseText"></p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='currency.js') }}"></script>
+</body>
+</html>

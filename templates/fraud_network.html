@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fraud Network Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<style>
+  .cluster-card {
+    background: #ffffff;
+    border: 1px solid #dce6f7;
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+  .cluster-card h3 { margin: 0 0 6px; font-size: 15px; color: #0b3d91; }
+  .cluster-card p { margin: 4px 0; font-size: 13.5px; color: #445379; }
+  .cluster-flag {
+    display: inline-block;
+    background: #fde2e2;
+    color: #a12626;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+  }
+  iframe { width: 100%; height: 600px; border: 1px solid #dce6f7; border-radius: 12px; }
+</style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Fraud Network Intelligence</h1>
+      <p>Reported phone numbers, UPI IDs, bank accounts, and devices linked across fraud reports.</p>
+      <a href="/">&larr; Back to Fraud Shield</a>
+    </header>
+
+    <div class="input-area" style="margin-bottom: 24px;">
+      <p style="margin:0; font-size:14px; color:#445379;">
+        <strong>{{ summary.total_nodes }}</strong> entities tracked across
+        <strong>{{ summary.num_clusters }}</strong> distinct clusters.
+        Larger, denser clusters indicate coordinated fraud rings rather than isolated incidents.
+      </p>
+    </div>
+
+    <iframe src="{{ url_for('static', filename='fraud_network.html') }}"></iframe>
+
+    <h2 style="margin-top:28px; color:#0b3d91; font-size:18px;">Detected Clusters</h2>
+
+    {% for c in summary.clusters %}
+    <div class="cluster-card">
+      {% if c.num_reports > 1 %}
+        <span class="cluster-flag">Coordinated ring — {{ c.num_reports }} linked reports</span>
+      {% endif %}
+      <h3>Cluster: {{ c.size }} linked entities</h3>
+      <p><strong>Central node:</strong> {{ c.central_node }} ({{ c.central_node_degree }} connections)</p>
+      <p><strong>Members:</strong> {{ c.members | join(', ') }}</p>
+      <p><a href="/api/evidence/{{ loop.index0 }}" target="_blank">Export evidence package (JSON) &rarr;</a></p>
+    </div>
+    {% endfor %}
+  </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Citizen Fraud Shield</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Citizen Fraud Shield</h1>
+      <p>Paste a suspicious message or describe a call. We'll assess the risk.</p>
+      <p><a href="/currency">Check a currency note &rarr;</a> &nbsp;|&nbsp; <a href="/fraud-network">Fraud network intelligence &rarr;</a> &nbsp;|&nbsp; <a href="/crime-map">Crime hotspot map &rarr;</a> &nbsp;|&nbsp; <a href="/alerts">Alert log &rarr;</a></p>
+    </header>
+
+    <div class="input-area">
+      <textarea id="messageInput" placeholder="e.g. 'Caller claims to be from CBI, says I am under digital arrest and must stay on video call...'"></textarea>
+      <button id="checkBtn">Check risk</button>
+    </div>
+
+    <div id="result" class="result hidden">
+      <div class="risk-badge" id="riskBadge"></div>
+      <div class="score-line" id="scoreLine"></div>
+      <p id="responseText"></p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

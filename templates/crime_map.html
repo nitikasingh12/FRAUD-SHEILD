@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Crime Hotspot Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<style>
+  iframe { width: 100%; height: 600px; border: 1px solid #dce6f7; border-radius: 12px; }
+  .stat-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+  .stat-box {
+    background: #ffffff; border: 1px solid #dce6f7; border-radius: 10px;
+    padding: 12px 16px; font-size: 13.5px; color: #445379;
+  }
+  .stat-box b { color: #0b3d91; font-size: 16px; display: block; }
+</style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Crime Hotspot Map</h1>
+      <p>Geospatial view of fraud complaints, digital arrest scams, and counterfeit seizures.</p>
+      <a href="/">&larr; Back to Fraud Shield</a>
+    </header>
+
+    <div class="stat-row">
+      <div class="stat-box"><b>{{ summary.total_incidents }}</b>Total incidents</div>
+      <div class="stat-box"><b>{{ summary.hotspot_city }}</b>Top hotspot ({{ summary.hotspot_count }} incidents)</div>
+      {% for type_name, count in summary.by_type.items() %}
+      <div class="stat-box"><b>{{ count }}</b>{{ type_name }}</div>
+      {% endfor %}
+    </div>
+
+    <iframe src="{{ url_for('static', filename='crime_map.html') }}"></iframe>
+  </div>
+</body>
+</html>

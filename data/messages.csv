@@ -1,0 +1,79 @@
+text,label
+"This is Officer Sharma from CBI. You are under digital arrest. Do not disconnect the video call.",scam
+"Your Aadhaar has been linked to a money laundering case. Stay on this call or you will be arrested immediately.",scam
+"We are from the Customs Department. A parcel with illegal items was found in your name. Pay a fine now to avoid arrest.",scam
+"This is the Enforcement Directorate. Your bank account is under investigation. Transfer funds to the verification account for clearance.",scam
+"Do not tell anyone about this call, it is a confidential government investigation.",scam
+"Your account will be frozen in 1 hour unless you share the OTP sent to your phone.",scam
+"Congratulations, you have won a lottery of 25 lakh rupees, share your bank details to claim the prize.",scam
+"This is TRAI, your mobile number will be disconnected in 2 hours due to illegal usage, press 1 to speak to an officer.",scam
+"Dear customer your KYC has expired, update immediately by clicking this link or your account will be blocked.",scam
+"This is the income tax department, a warrant has been issued in your name, pay the pending fine now to avoid arrest.",scam
+"Sir this is Delhi Police cybercrime cell, your number is linked to a crime, keep this call active and follow instructions.",scam
+"You must remain on video call while we verify your identity, do not switch off your camera.",scam
+"Your package containing drugs was intercepted at customs, cooperate or a police team will arrive at your house.",scam
+"We need you to install this remote access app so our officer can verify your bank account safely.",scam
+"This call is being recorded for legal purposes, share your Aadhaar and PAN number immediately to avoid legal action.",scam
+"Final notice, transfer 50000 rupees to the RBI verification account within 30 minutes to avoid account seizure.",scam
+"Hello maam this is FedEx, we found illegal substances in a parcel booked under your ID, connecting you to cybercrime officer now.",scam
+"Do not hang up, an arrest warrant is being processed against you right now, only a settlement fee can stop it.",scam
+"Please share your UPI PIN so we can reverse the wrong transaction that happened on your account.",scam
+"Your electricity connection will be disconnected tonight, pay the pending bill immediately using this link and share OTP to confirm.",scam
+"This is your bank, we detected suspicious login, please confirm your card number and CVV to secure your account.",scam
+"You have been selected for a free government subsidy, share your bank account number and OTP to receive it today.",scam
+"Sir your son has met with an accident, transfer money immediately to this account for his hospital treatment.",scam
+"This is an automated call from the narcotics department, your number is under surveillance, do not disconnect.",scam
+"We are conducting a digital arrest procedure, any attempt to disconnect will be treated as an admission of guilt.",scam
+"This is officer Verma from cybercrime cell Mumbai, your SIM card is being used for illegal activity, stay on the call for verification.",scam
+"Your Aadhaar linked bank account shows suspicious foreign transactions, RBI needs you to transfer funds to a safe account for audit.",scam
+"Hello this is customs Delhi airport, a parcel under your Aadhaar contains banned items, pay clearance fee immediately or face arrest.",scam
+"This is a court notice, an FIR has been filed against you, pay the settlement amount within the hour to close the case.",scam
+"Sir I am calling from RBI fraud monitoring, share your net banking password so we can block the fraudulent transaction on your account.",scam
+"You have been shortlisted for a work from home job, pay a refundable registration fee of 2000 to activate your account.",scam
+"I am your relative's friend, he is in police custody after an accident, urgently transfer bail money to this UPI ID.",scam
+"This is a message from Income Tax, your refund of 45000 is pending, click this link and enter your bank details and OTP to claim it.",scam
+"Investment opportunity, double your money in 7 days, deposit funds today to this account and share your OTP for verification.",scam
+"Hi, are we still on for lunch tomorrow at 1pm?",legit
+"Your Swiggy order has been delivered, thank you for ordering with us.",legit
+"Reminder: your electricity bill payment was successful, thank you.",legit
+"Can you send me the notes from today's lecture?",legit
+"Your OTP for login is 482193, please do not share this with anyone.",legit
+"Meeting rescheduled to 4pm, please join the same link.",legit
+"Congratulations on completing your internship, we would love to have you join us full time.",legit
+"Your flight PNR is confirmed, check in opens 24 hours before departure.",legit
+"Please find attached the resume format we discussed in the interview.",legit
+"Your college fee payment has been received successfully.",legit
+"Hey, are you free this weekend for the hackathon prep call?",legit
+"Your Amazon order will be delivered by tomorrow evening.",legit
+"This is a reminder that your library book is due next week.",legit
+"Thank you for applying, we will get back to you after reviewing your profile.",legit
+"Your PF withdrawal request has been processed and credited to your bank account.",legit
+"Please review the attached invoice and confirm before Friday.",legit
+"Your appointment with the dentist is confirmed for Monday 10am.",legit
+"Great job on the presentation today, the client was impressed.",legit
+"Your data usage for this month is 4.2 GB out of 10 GB.",legit
+"The GSSoC mentor call has been moved to 6pm today.",legit
+"Please submit your assignment before the deadline on Sunday.",legit
+"Your credit card statement is now available on the app.",legit
+"Team standup will happen at 9:30am tomorrow as usual.",legit
+"Your resume has been shortlisted, HR will call you for the next round.",legit
+"Happy birthday, hope you have a wonderful day!",legit
+"Your OTP is 738291, valid for 10 minutes, do not share it with anyone including bank staff.",legit
+"Your flight departs in 2 hours, please complete web check-in immediately to avoid delay.",legit
+"Your food order will arrive in 10 minutes, please keep exact change ready.",legit
+"Your subscription renews tomorrow, update your payment method if you wish to cancel.",legit
+"Urgent: your exam hall ticket is now available, download it before the exam date.",legit
+"Please pay your maintenance bill by the 5th to avoid a late fee, thank you.",legit
+"Your cab is arriving in 3 minutes, please be ready at the pickup point.",legit
+"Reminder: your loan EMI is due tomorrow, please ensure sufficient balance in your account.",legit
+"Your parcel is out for delivery and will reach you today, track it on the app.",legit
+"Your interview is scheduled for tomorrow at 11am, please join 5 minutes early.",legit
+"This is a reminder from your bank that your card expires this month, visit the branch to renew.",legit
+"Your water supply will be interrupted tomorrow from 10am to 2pm for maintenance work.",legit
+"Please complete your KYC update on the official app before the 30th to avoid service interruption.",legit
+"Your salary has been credited to your account, please check your bank statement.",legit
+"Your ticket booking is confirmed, PNR and seat details are attached.",legit
+"Reminder: pay your electricity bill by tomorrow to avoid disconnection notice.",legit
+"Your package delivery failed, please reschedule using the tracking link on the courier's official website.",legit
+"This is a reminder that your vaccination appointment is tomorrow at the community health centre.",legit
+"Your internet plan expires today, recharge to avoid service interruption.",legit

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Alert Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<style>
+  .alert-card {
+    background: #ffffff;
+    border: 1px solid #dce6f7;
+    border-left: 4px solid #a12626;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+  }
+  .alert-card .id { font-size: 12px; color: #8291ac; font-weight: 600; }
+  .alert-card .msg { font-size: 14px; color: #22304f; margin: 6px 0; }
+  .alert-card .meta { font-size: 12.5px; color: #6b7a99; }
+</style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Alert Log</h1>
+      <p>Auto-generated alerts for High-risk fraud detections (simulated MHA notification).</p>
+      <a href="/">&larr; Back to Fraud Shield</a>
+    </header>
+
+    {% if alerts %}
+      {% for a in alerts %}
+      <div class="alert-card">
+        <div class="id">{{ a.alert_id }} &middot; {{ a.timestamp }}</div>
+        <div class="msg">"{{ a.message_excerpt }}"</div>
+        <div class="meta">Risk score: {{ a.risk_score }} &middot; Reasons: {{ a.matched_categories | join(', ') }}</div>
+        <div class="meta">{{ a.status }}</div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p style="color:#6b7a99;">No high-risk alerts logged yet. Try checking a suspicious message on the main page.</p>
+    {% endif %}
+  </div>
+</body>
+</html>

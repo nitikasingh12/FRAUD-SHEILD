@@ -1,0 +1,163 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500001", "label": "9876500001", "shape": "dot", "size": 25, "title": "PHONE: 9876500001\nConnections: 5"}, {"color": "#e07b39", "font": {"color": "#14213d"}, "id": "upi:rajkumar99@upi", "label": "rajkumar99@upi", "shape": "dot", "size": 28, "title": "UPI: rajkumar99@upi\nConnections: 6"}, {"color": "#2e9e5b", "font": {"color": "#14213d"}, "id": "account:ACC10234", "label": "ACC10234", "shape": "dot", "size": 37, "title": "ACCOUNT: ACC10234\nConnections: 9"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-A1", "label": "DEV-A1", "shape": "dot", "size": 28, "title": "DEVICE: DEV-A1\nConnections: 6"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500002", "label": "9876500002", "shape": "dot", "size": 19, "title": "PHONE: 9876500002\nConnections: 3"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500003", "label": "9876500003", "shape": "dot", "size": 19, "title": "PHONE: 9876500003\nConnections: 3"}, {"color": "#e07b39", "font": {"color": "#14213d"}, "id": "upi:priya.scam@upi", "label": "priya.scam@upi", "shape": "dot", "size": 25, "title": "UPI: priya.scam@upi\nConnections: 5"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-A2", "label": "DEV-A2", "shape": "dot", "size": 25, "title": "DEVICE: DEV-A2\nConnections: 5"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500004", "label": "9876500004", "shape": "dot", "size": 19, "title": "PHONE: 9876500004\nConnections: 3"}, {"color": "#2e9e5b", "font": {"color": "#14213d"}, "id": "account:ACC55678", "label": "ACC55678", "shape": "dot", "size": 28, "title": "ACCOUNT: ACC55678\nConnections: 6"}, {"color": "#e07b39", "font": {"color": "#14213d"}, "id": "upi:vikas.finance@upi", "label": "vikas.finance@upi", "shape": "dot", "size": 19, "title": "UPI: vikas.finance@upi\nConnections: 3"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500005", "label": "9876500005", "shape": "dot", "size": 19, "title": "PHONE: 9876500005\nConnections: 3"}, {"color": "#e07b39", "font": {"color": "#14213d"}, "id": "upi:sunny.trader@upi", "label": "sunny.trader@upi", "shape": "dot", "size": 28, "title": "UPI: sunny.trader@upi\nConnections: 6"}, {"color": "#2e9e5b", "font": {"color": "#14213d"}, "id": "account:ACC90911", "label": "ACC90911", "shape": "dot", "size": 34, "title": "ACCOUNT: ACC90911\nConnections: 8"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-B1", "label": "DEV-B1", "shape": "dot", "size": 22, "title": "DEVICE: DEV-B1\nConnections: 4"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500006", "label": "9876500006", "shape": "dot", "size": 25, "title": "PHONE: 9876500006\nConnections: 5"}, {"color": "#e07b39", "font": {"color": "#14213d"}, "id": "upi:anita.pay@upi", "label": "anita.pay@upi", "shape": "dot", "size": 25, "title": "UPI: anita.pay@upi\nConnections: 5"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-B2", "label": "DEV-B2", "shape": "dot", "size": 25, "title": "DEVICE: DEV-B2\nConnections: 5"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500007", "label": "9876500007", "shape": "dot", "size": 19, "title": "PHONE: 9876500007\nConnections: 3"}, {"color": "#2e9e5b", "font": {"color": "#14213d"}, "id": "account:ACC44120", "label": "ACC44120", "shape": "dot", "size": 28, "title": "ACCOUNT: ACC44120\nConnections: 6"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500008", "label": "9876500008", "shape": "dot", "size": 19, "title": "PHONE: 9876500008\nConnections: 3"}, {"color": "#e07b39", "font": {"color": "#14213d"}, "id": "upi:rohit.cash@upi", "label": "rohit.cash@upi", "shape": "dot", "size": 19, "title": "UPI: rohit.cash@upi\nConnections: 3"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-B3", "label": "DEV-B3", "shape": "dot", "size": 19, "title": "DEVICE: DEV-B3\nConnections: 3"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500009", "label": "9876500009", "shape": "dot", "size": 25, "title": "PHONE: 9876500009\nConnections: 5"}, {"color": "#e07b39", "font": {"color": "#14213d"}, "id": "upi:neha.transfer@upi", "label": "neha.transfer@upi", "shape": "dot", "size": 22, "title": "UPI: neha.transfer@upi\nConnections: 4"}, {"color": "#2e9e5b", "font": {"color": "#14213d"}, "id": "account:ACC77234", "label": "ACC77234", "shape": "dot", "size": 28, "title": "ACCOUNT: ACC77234\nConnections: 6"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-C1", "label": "DEV-C1", "shape": "dot", "size": 22, "title": "DEVICE: DEV-C1\nConnections: 4"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500010", "label": "9876500010", "shape": "dot", "size": 19, "title": "PHONE: 9876500010\nConnections: 3"}, {"color": "#e07b39", "font": {"color": "#14213d"}, "id": "upi:manoj.upi@upi", "label": "manoj.upi@upi", "shape": "dot", "size": 31, "title": "UPI: manoj.upi@upi\nConnections: 7"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-C2", "label": "DEV-C2", "shape": "dot", "size": 25, "title": "DEVICE: DEV-C2\nConnections: 5"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500011", "label": "9876500011", "shape": "dot", "size": 19, "title": "PHONE: 9876500011\nConnections: 3"}, {"color": "#2e9e5b", "font": {"color": "#14213d"}, "id": "account:ACC33456", "label": "ACC33456", "shape": "dot", "size": 25, "title": "ACCOUNT: ACC33456\nConnections: 5"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500012", "label": "9876500012", "shape": "dot", "size": 19, "title": "PHONE: 9876500012\nConnections: 3"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-C3", "label": "DEV-C3", "shape": "dot", "size": 19, "title": "DEVICE: DEV-C3\nConnections: 3"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500013", "label": "9876500013", "shape": "dot", "size": 19, "title": "PHONE: 9876500013\nConnections: 3"}, {"color": "#e07b39", "font": {"color": "#14213d"}, "id": "upi:kiran.quickpay@upi", "label": "kiran.quickpay@upi", "shape": "dot", "size": 19, "title": "UPI: kiran.quickpay@upi\nConnections: 3"}, {"color": "#2e9e5b", "font": {"color": "#14213d"}, "id": "account:ACC66789", "label": "ACC66789", "shape": "dot", "size": 19, "title": "ACCOUNT: ACC66789\nConnections: 3"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-D1", "label": "DEV-D1", "shape": "dot", "size": 19, "title": "DEVICE: DEV-D1\nConnections: 3"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500014", "label": "9876500014", "shape": "dot", "size": 19, "title": "PHONE: 9876500014\nConnections: 3"}, {"color": "#e07b39", "font": {"color": "#14213d"}, "id": "upi:deepa.money@upi", "label": "deepa.money@upi", "shape": "dot", "size": 19, "title": "UPI: deepa.money@upi\nConnections: 3"}, {"color": "#2e9e5b", "font": {"color": "#14213d"}, "id": "account:ACC22345", "label": "ACC22345", "shape": "dot", "size": 19, "title": "ACCOUNT: ACC22345\nConnections: 3"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-D2", "label": "DEV-D2", "shape": "dot", "size": 19, "title": "DEVICE: DEV-D2\nConnections: 3"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500015", "label": "9876500015", "shape": "dot", "size": 19, "title": "PHONE: 9876500015\nConnections: 3"}, {"color": "#e07b39", "font": {"color": "#14213d"}, "id": "upi:arjun.wallet@upi", "label": "arjun.wallet@upi", "shape": "dot", "size": 19, "title": "UPI: arjun.wallet@upi\nConnections: 3"}, {"color": "#2e9e5b", "font": {"color": "#14213d"}, "id": "account:ACC11987", "label": "ACC11987", "shape": "dot", "size": 19, "title": "ACCOUNT: ACC11987\nConnections: 3"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-D3", "label": "DEV-D3", "shape": "dot", "size": 19, "title": "DEVICE: DEV-D3\nConnections: 3"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500016", "label": "9876500016", "shape": "dot", "size": 19, "title": "PHONE: 9876500016\nConnections: 3"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-A3", "label": "DEV-A3", "shape": "dot", "size": 19, "title": "DEVICE: DEV-A3\nConnections: 3"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500017", "label": "9876500017", "shape": "dot", "size": 19, "title": "PHONE: 9876500017\nConnections: 3"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-B4", "label": "DEV-B4", "shape": "dot", "size": 19, "title": "DEVICE: DEV-B4\nConnections: 3"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500018", "label": "9876500018", "shape": "dot", "size": 19, "title": "PHONE: 9876500018\nConnections: 3"}, {"color": "#e07b39", "font": {"color": "#14213d"}, "id": "upi:suresh.fast@upi", "label": "suresh.fast@upi", "shape": "dot", "size": 28, "title": "UPI: suresh.fast@upi\nConnections: 6"}, {"color": "#2e9e5b", "font": {"color": "#14213d"}, "id": "account:ACC88123", "label": "ACC88123", "shape": "dot", "size": 28, "title": "ACCOUNT: ACC88123\nConnections: 6"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-E1", "label": "DEV-E1", "shape": "dot", "size": 22, "title": "DEVICE: DEV-E1\nConnections: 4"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500019", "label": "9876500019", "shape": "dot", "size": 19, "title": "PHONE: 9876500019\nConnections: 3"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500020", "label": "9876500020", "shape": "dot", "size": 19, "title": "PHONE: 9876500020\nConnections: 3"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-E2", "label": "DEV-E2", "shape": "dot", "size": 19, "title": "DEVICE: DEV-E2\nConnections: 3"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500021", "label": "9876500021", "shape": "dot", "size": 19, "title": "PHONE: 9876500021\nConnections: 3"}, {"color": "#e07b39", "font": {"color": "#14213d"}, "id": "upi:geeta.pay@upi", "label": "geeta.pay@upi", "shape": "dot", "size": 19, "title": "UPI: geeta.pay@upi\nConnections: 3"}, {"color": "#2e9e5b", "font": {"color": "#14213d"}, "id": "account:ACC99876", "label": "ACC99876", "shape": "dot", "size": 19, "title": "ACCOUNT: ACC99876\nConnections: 3"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-F1", "label": "DEV-F1", "shape": "dot", "size": 19, "title": "DEVICE: DEV-F1\nConnections: 3"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500022", "label": "9876500022", "shape": "dot", "size": 19, "title": "PHONE: 9876500022\nConnections: 3"}, {"color": "#e07b39", "font": {"color": "#14213d"}, "id": "upi:vinod.cash@upi", "label": "vinod.cash@upi", "shape": "dot", "size": 19, "title": "UPI: vinod.cash@upi\nConnections: 3"}, {"color": "#2e9e5b", "font": {"color": "#14213d"}, "id": "account:ACC44556", "label": "ACC44556", "shape": "dot", "size": 19, "title": "ACCOUNT: ACC44556\nConnections: 3"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-F2", "label": "DEV-F2", "shape": "dot", "size": 19, "title": "DEVICE: DEV-F2\nConnections: 3"}, {"color": "#1a4d8f", "font": {"color": "#14213d"}, "id": "phone:9876500023", "label": "9876500023", "shape": "dot", "size": 19, "title": "PHONE: 9876500023\nConnections: 3"}, {"color": "#e07b39", "font": {"color": "#14213d"}, "id": "upi:fresh.report@upi", "label": "fresh.report@upi", "shape": "dot", "size": 19, "title": "UPI: fresh.report@upi\nConnections: 3"}, {"color": "#2e9e5b", "font": {"color": "#14213d"}, "id": "account:ACC12009", "label": "ACC12009", "shape": "dot", "size": 19, "title": "ACCOUNT: ACC12009\nConnections: 3"}, {"color": "#8a3ffc", "font": {"color": "#14213d"}, "id": "device:DEV-G1", "label": "DEV-G1", "shape": "dot", "size": 19, "title": "DEVICE: DEV-G1\nConnections: 3"}]);
+                  edges = new vis.DataSet([{"from": "phone:9876500001", "title": "Shared in reports: R001, R027", "to": "upi:rajkumar99@upi", "value": 2}, {"from": "phone:9876500001", "title": "Shared in reports: R001, R027", "to": "account:ACC10234", "value": 2}, {"from": "phone:9876500001", "title": "Shared in reports: R001, R005, R027", "to": "device:DEV-A1", "value": 3}, {"from": "phone:9876500001", "title": "Shared in reports: R005", "to": "upi:vikas.finance@upi", "value": 1}, {"from": "phone:9876500001", "title": "Shared in reports: R005", "to": "account:ACC55678", "value": 1}, {"from": "upi:rajkumar99@upi", "title": "Shared in reports: R001, R002, R019, R027", "to": "account:ACC10234", "value": 4}, {"from": "upi:rajkumar99@upi", "title": "Shared in reports: R001, R002, R027", "to": "device:DEV-A1", "value": 3}, {"from": "upi:rajkumar99@upi", "title": "Shared in reports: R002", "to": "phone:9876500002", "value": 1}, {"from": "upi:rajkumar99@upi", "title": "Shared in reports: R019", "to": "phone:9876500016", "value": 1}, {"from": "upi:rajkumar99@upi", "title": "Shared in reports: R019", "to": "device:DEV-A3", "value": 1}, {"from": "account:ACC10234", "title": "Shared in reports: R001, R002, R027", "to": "device:DEV-A1", "value": 3}, {"from": "account:ACC10234", "title": "Shared in reports: R002", "to": "phone:9876500002", "value": 1}, {"from": "account:ACC10234", "title": "Shared in reports: R003", "to": "phone:9876500003", "value": 1}, {"from": "account:ACC10234", "title": "Shared in reports: R003", "to": "upi:priya.scam@upi", "value": 1}, {"from": "account:ACC10234", "title": "Shared in reports: R003", "to": "device:DEV-A2", "value": 1}, {"from": "account:ACC10234", "title": "Shared in reports: R019", "to": "phone:9876500016", "value": 1}, {"from": "account:ACC10234", "title": "Shared in reports: R019", "to": "device:DEV-A3", "value": 1}, {"from": "device:DEV-A1", "title": "Shared in reports: R002", "to": "phone:9876500002", "value": 1}, {"from": "device:DEV-A1", "title": "Shared in reports: R005", "to": "upi:vikas.finance@upi", "value": 1}, {"from": "device:DEV-A1", "title": "Shared in reports: R005", "to": "account:ACC55678", "value": 1}, {"from": "phone:9876500003", "title": "Shared in reports: R003", "to": "upi:priya.scam@upi", "value": 1}, {"from": "phone:9876500003", "title": "Shared in reports: R003", "to": "device:DEV-A2", "value": 1}, {"from": "upi:priya.scam@upi", "title": "Shared in reports: R003, R004", "to": "device:DEV-A2", "value": 2}, {"from": "upi:priya.scam@upi", "title": "Shared in reports: R004", "to": "phone:9876500004", "value": 1}, {"from": "upi:priya.scam@upi", "title": "Shared in reports: R004", "to": "account:ACC55678", "value": 1}, {"from": "device:DEV-A2", "title": "Shared in reports: R004", "to": "phone:9876500004", "value": 1}, {"from": "device:DEV-A2", "title": "Shared in reports: R004", "to": "account:ACC55678", "value": 1}, {"from": "phone:9876500004", "title": "Shared in reports: R004", "to": "account:ACC55678", "value": 1}, {"from": "account:ACC55678", "title": "Shared in reports: R005", "to": "upi:vikas.finance@upi", "value": 1}, {"from": "phone:9876500005", "title": "Shared in reports: R006", "to": "upi:sunny.trader@upi", "value": 1}, {"from": "phone:9876500005", "title": "Shared in reports: R006", "to": "account:ACC90911", "value": 1}, {"from": "phone:9876500005", "title": "Shared in reports: R006", "to": "device:DEV-B1", "value": 1}, {"from": "upi:sunny.trader@upi", "title": "Shared in reports: R006, R007, R020, R029", "to": "account:ACC90911", "value": 4}, {"from": "upi:sunny.trader@upi", "title": "Shared in reports: R006, R007, R029", "to": "device:DEV-B1", "value": 3}, {"from": "upi:sunny.trader@upi", "title": "Shared in reports: R007, R029", "to": "phone:9876500006", "value": 2}, {"from": "upi:sunny.trader@upi", "title": "Shared in reports: R020", "to": "phone:9876500017", "value": 1}, {"from": "upi:sunny.trader@upi", "title": "Shared in reports: R020", "to": "device:DEV-B4", "value": 1}, {"from": "account:ACC90911", "title": "Shared in reports: R006, R007, R029", "to": "device:DEV-B1", "value": 3}, {"from": "account:ACC90911", "title": "Shared in reports: R007, R008, R029", "to": "phone:9876500006", "value": 3}, {"from": "account:ACC90911", "title": "Shared in reports: R008", "to": "upi:anita.pay@upi", "value": 1}, {"from": "account:ACC90911", "title": "Shared in reports: R008", "to": "device:DEV-B2", "value": 1}, {"from": "account:ACC90911", "title": "Shared in reports: R020", "to": "phone:9876500017", "value": 1}, {"from": "account:ACC90911", "title": "Shared in reports: R020", "to": "device:DEV-B4", "value": 1}, {"from": "device:DEV-B1", "title": "Shared in reports: R007, R029", "to": "phone:9876500006", "value": 2}, {"from": "phone:9876500006", "title": "Shared in reports: R008", "to": "upi:anita.pay@upi", "value": 1}, {"from": "phone:9876500006", "title": "Shared in reports: R008", "to": "device:DEV-B2", "value": 1}, {"from": "upi:anita.pay@upi", "title": "Shared in reports: R008, R009", "to": "device:DEV-B2", "value": 2}, {"from": "upi:anita.pay@upi", "title": "Shared in reports: R009", "to": "phone:9876500007", "value": 1}, {"from": "upi:anita.pay@upi", "title": "Shared in reports: R009", "to": "account:ACC44120", "value": 1}, {"from": "device:DEV-B2", "title": "Shared in reports: R009", "to": "phone:9876500007", "value": 1}, {"from": "device:DEV-B2", "title": "Shared in reports: R009", "to": "account:ACC44120", "value": 1}, {"from": "phone:9876500007", "title": "Shared in reports: R009", "to": "account:ACC44120", "value": 1}, {"from": "account:ACC44120", "title": "Shared in reports: R010", "to": "phone:9876500008", "value": 1}, {"from": "account:ACC44120", "title": "Shared in reports: R010", "to": "upi:rohit.cash@upi", "value": 1}, {"from": "account:ACC44120", "title": "Shared in reports: R010", "to": "device:DEV-B3", "value": 1}, {"from": "phone:9876500008", "title": "Shared in reports: R010", "to": "upi:rohit.cash@upi", "value": 1}, {"from": "phone:9876500008", "title": "Shared in reports: R010", "to": "device:DEV-B3", "value": 1}, {"from": "upi:rohit.cash@upi", "title": "Shared in reports: R010", "to": "device:DEV-B3", "value": 1}, {"from": "phone:9876500009", "title": "Shared in reports: R011, R026", "to": "upi:neha.transfer@upi", "value": 2}, {"from": "phone:9876500009", "title": "Shared in reports: R011, R013, R026", "to": "account:ACC77234", "value": 3}, {"from": "phone:9876500009", "title": "Shared in reports: R011, R026", "to": "device:DEV-C1", "value": 2}, {"from": "phone:9876500009", "title": "Shared in reports: R013", "to": "upi:manoj.upi@upi", "value": 1}, {"from": "phone:9876500009", "title": "Shared in reports: R013", "to": "device:DEV-C2", "value": 1}, {"from": "upi:neha.transfer@upi", "title": "Shared in reports: R011, R012, R026", "to": "account:ACC77234", "value": 3}, {"from": "upi:neha.transfer@upi", "title": "Shared in reports: R011, R012, R026", "to": "device:DEV-C1", "value": 3}, {"from": "upi:neha.transfer@upi", "title": "Shared in reports: R012", "to": "phone:9876500010", "value": 1}, {"from": "account:ACC77234", "title": "Shared in reports: R011, R012, R026", "to": "device:DEV-C1", "value": 3}, {"from": "account:ACC77234", "title": "Shared in reports: R012", "to": "phone:9876500010", "value": 1}, {"from": "account:ACC77234", "title": "Shared in reports: R013", "to": "upi:manoj.upi@upi", "value": 1}, {"from": "account:ACC77234", "title": "Shared in reports: R013", "to": "device:DEV-C2", "value": 1}, {"from": "device:DEV-C1", "title": "Shared in reports: R012", "to": "phone:9876500010", "value": 1}, {"from": "upi:manoj.upi@upi", "title": "Shared in reports: R013, R014, R030", "to": "device:DEV-C2", "value": 3}, {"from": "upi:manoj.upi@upi", "title": "Shared in reports: R014, R030", "to": "phone:9876500011", "value": 2}, {"from": "upi:manoj.upi@upi", "title": "Shared in reports: R014, R015, R030", "to": "account:ACC33456", "value": 3}, {"from": "upi:manoj.upi@upi", "title": "Shared in reports: R015", "to": "phone:9876500012", "value": 1}, {"from": "upi:manoj.upi@upi", "title": "Shared in reports: R015", "to": "device:DEV-C3", "value": 1}, {"from": "device:DEV-C2", "title": "Shared in reports: R014, R030", "to": "phone:9876500011", "value": 2}, {"from": "device:DEV-C2", "title": "Shared in reports: R014, R030", "to": "account:ACC33456", "value": 2}, {"from": "phone:9876500011", "title": "Shared in reports: R014, R030", "to": "account:ACC33456", "value": 2}, {"from": "account:ACC33456", "title": "Shared in reports: R015", "to": "phone:9876500012", "value": 1}, {"from": "account:ACC33456", "title": "Shared in reports: R015", "to": "device:DEV-C3", "value": 1}, {"from": "phone:9876500012", "title": "Shared in reports: R015", "to": "device:DEV-C3", "value": 1}, {"from": "phone:9876500013", "title": "Shared in reports: R016", "to": "upi:kiran.quickpay@upi", "value": 1}, {"from": "phone:9876500013", "title": "Shared in reports: R016", "to": "account:ACC66789", "value": 1}, {"from": "phone:9876500013", "title": "Shared in reports: R016", "to": "device:DEV-D1", "value": 1}, {"from": "upi:kiran.quickpay@upi", "title": "Shared in reports: R016", "to": "account:ACC66789", "value": 1}, {"from": "upi:kiran.quickpay@upi", "title": "Shared in reports: R016", "to": "device:DEV-D1", "value": 1}, {"from": "account:ACC66789", "title": "Shared in reports: R016", "to": "device:DEV-D1", "value": 1}, {"from": "phone:9876500014", "title": "Shared in reports: R017", "to": "upi:deepa.money@upi", "value": 1}, {"from": "phone:9876500014", "title": "Shared in reports: R017", "to": "account:ACC22345", "value": 1}, {"from": "phone:9876500014", "title": "Shared in reports: R017", "to": "device:DEV-D2", "value": 1}, {"from": "upi:deepa.money@upi", "title": "Shared in reports: R017", "to": "account:ACC22345", "value": 1}, {"from": "upi:deepa.money@upi", "title": "Shared in reports: R017", "to": "device:DEV-D2", "value": 1}, {"from": "account:ACC22345", "title": "Shared in reports: R017", "to": "device:DEV-D2", "value": 1}, {"from": "phone:9876500015", "title": "Shared in reports: R018", "to": "upi:arjun.wallet@upi", "value": 1}, {"from": "phone:9876500015", "title": "Shared in reports: R018", "to": "account:ACC11987", "value": 1}, {"from": "phone:9876500015", "title": "Shared in reports: R018", "to": "device:DEV-D3", "value": 1}, {"from": "upi:arjun.wallet@upi", "title": "Shared in reports: R018", "to": "account:ACC11987", "value": 1}, {"from": "upi:arjun.wallet@upi", "title": "Shared in reports: R018", "to": "device:DEV-D3", "value": 1}, {"from": "account:ACC11987", "title": "Shared in reports: R018", "to": "device:DEV-D3", "value": 1}, {"from": "phone:9876500016", "title": "Shared in reports: R019", "to": "device:DEV-A3", "value": 1}, {"from": "phone:9876500017", "title": "Shared in reports: R020", "to": "device:DEV-B4", "value": 1}, {"from": "phone:9876500018", "title": "Shared in reports: R021", "to": "upi:suresh.fast@upi", "value": 1}, {"from": "phone:9876500018", "title": "Shared in reports: R021", "to": "account:ACC88123", "value": 1}, {"from": "phone:9876500018", "title": "Shared in reports: R021", "to": "device:DEV-E1", "value": 1}, {"from": "upi:suresh.fast@upi", "title": "Shared in reports: R021, R022, R023", "to": "account:ACC88123", "value": 3}, {"from": "upi:suresh.fast@upi", "title": "Shared in reports: R021, R022", "to": "device:DEV-E1", "value": 2}, {"from": "upi:suresh.fast@upi", "title": "Shared in reports: R022", "to": "phone:9876500019", "value": 1}, {"from": "upi:suresh.fast@upi", "title": "Shared in reports: R023", "to": "phone:9876500020", "value": 1}, {"from": "upi:suresh.fast@upi", "title": "Shared in reports: R023", "to": "device:DEV-E2", "value": 1}, {"from": "account:ACC88123", "title": "Shared in reports: R021, R022", "to": "device:DEV-E1", "value": 2}, {"from": "account:ACC88123", "title": "Shared in reports: R022", "to": "phone:9876500019", "value": 1}, {"from": "account:ACC88123", "title": "Shared in reports: R023", "to": "phone:9876500020", "value": 1}, {"from": "account:ACC88123", "title": "Shared in reports: R023", "to": "device:DEV-E2", "value": 1}, {"from": "device:DEV-E1", "title": "Shared in reports: R022", "to": "phone:9876500019", "value": 1}, {"from": "phone:9876500020", "title": "Shared in reports: R023", "to": "device:DEV-E2", "value": 1}, {"from": "phone:9876500021", "title": "Shared in reports: R024", "to": "upi:geeta.pay@upi", "value": 1}, {"from": "phone:9876500021", "title": "Shared in reports: R024", "to": "account:ACC99876", "value": 1}, {"from": "phone:9876500021", "title": "Shared in reports: R024", "to": "device:DEV-F1", "value": 1}, {"from": "upi:geeta.pay@upi", "title": "Shared in reports: R024", "to": "account:ACC99876", "value": 1}, {"from": "upi:geeta.pay@upi", "title": "Shared in reports: R024", "to": "device:DEV-F1", "value": 1}, {"from": "account:ACC99876", "title": "Shared in reports: R024", "to": "device:DEV-F1", "value": 1}, {"from": "phone:9876500022", "title": "Shared in reports: R025", "to": "upi:vinod.cash@upi", "value": 1}, {"from": "phone:9876500022", "title": "Shared in reports: R025", "to": "account:ACC44556", "value": 1}, {"from": "phone:9876500022", "title": "Shared in reports: R025", "to": "device:DEV-F2", "value": 1}, {"from": "upi:vinod.cash@upi", "title": "Shared in reports: R025", "to": "account:ACC44556", "value": 1}, {"from": "upi:vinod.cash@upi", "title": "Shared in reports: R025", "to": "device:DEV-F2", "value": 1}, {"from": "account:ACC44556", "title": "Shared in reports: R025", "to": "device:DEV-F2", "value": 1}, {"from": "phone:9876500023", "title": "Shared in reports: R028", "to": "upi:fresh.report@upi", "value": 1}, {"from": "phone:9876500023", "title": "Shared in reports: R028", "to": "account:ACC12009", "value": 1}, {"from": "phone:9876500023", "title": "Shared in reports: R028", "to": "device:DEV-G1", "value": 1}, {"from": "upi:fresh.report@upi", "title": "Shared in reports: R028", "to": "account:ACC12009", "value": 1}, {"from": "upi:fresh.report@upi", "title": "Shared in reports: R028", "to": "device:DEV-G1", "value": 1}, {"from": "account:ACC12009", "title": "Shared in reports: R028", "to": "device:DEV-G1", "value": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "barnesHut": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.3,
+            "damping": 0.09,
+            "gravitationalConstant": -3000,
+            "springConstant": 0.001,
+            "springLength": 120
+        },
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
